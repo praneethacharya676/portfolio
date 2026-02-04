@@ -1,49 +1,51 @@
 import { motion } from "framer-motion";
 import project1 from "../assets/projects/project1.png";
 import project2 from "../assets/projects/project2.png";
-import project3 from "../assets/projects/project3.png";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 export default function Projects() {
   const projects = [
     {
-      title: "Portfolio Website",
-      desc: "Personal portfolio built using React and Tailwind CSS.",
+      title: "Online Real Estate Business",
+      year: "2023",
       image: project1,
-      tech: ["React", "Tailwind"],
-      github: "https://github.com/",
-      live: "https://example.com",
+      desc: [
+        "Developed a responsive web application to manage property listings, rentals, and sales",
+        "Designed forms for property posting and customer inquiries",
+        "Improved navigation and layout for better user experience",
+      ],
+      tech: ["HTML", "CSS", "JavaScript"],
+      // github: "https://github.com/",
+      // live: "https://example.com",
     },
     {
-      title: "Todo App",
-      desc: "Task management app with clean UI and local storage.",
+      title: "Arduino-Based Dual Axis Solar Tracker",
+      year: "2024",
       image: project2,
-      tech: ["JavaScript", "CSS"],
-      github: "https://github.com/",
-      live: "https://example.com",
-    },
-    {
-      title: "Landing Page",
-      desc: "Modern responsive landing page design.",
-      image: project3,
-      tech: ["HTML", "CSS"],
-      github: "https://github.com/",
-      live: "https://example.com",
+      desc: [
+        "Built an IoT-based system to track solar panel movement using LDR sensors and servo motors",
+        "Programmed Arduino to adjust panel position based on sunlight direction",
+        "Integrated smoke detection module for safety alerts",
+      ],
+      tech: ["Arduino", "IoT", "Embedded C"],
+      // github: "https://github.com/",
+      // live: "",
     },
   ];
 
   return (
     <section
-  id="projects"
-  className="section bg-gradient-to-b from-bgMain via-bgSoft to-bgMain"
->
-
+      id="projects"
+      className="section bg-gradient-to-b from-bgMain via-bgSoft to-bgMain"
+    >
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          My <span className="text-cyan-400">Projects</span>
+        {/* Heading */}
+        <h2 className="section-title mb-12">
+          My <span className="section-accent">Projects</span>
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Project Cards */}
+        <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -51,7 +53,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-[#020617] rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-400/20 transition"
+              className="card overflow-hidden"
             >
               {/* Image */}
               <div className="overflow-hidden">
@@ -64,15 +66,24 @@ export default function Projects() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  {project.title}
-                </h3>
+                {/* Title + Year */}
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-xl font-semibold text-white">
+                    {project.title}
+                  </h3>
+                  <span className="text-sm text-cyan-400">
+                    {project.year}
+                  </span>
+                </div>
 
-                <p className="text-gray-400 text-sm mb-4">
-                  {project.desc}
-                </p>
+                {/* Description */}
+                <ul className="list-disc list-inside text-textSoft text-sm space-y-1 mb-4">
+                  {project.desc.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
 
-                {/* Tech stack */}
+                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, i) => (
                     <span
@@ -84,25 +95,29 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Buttons */}
+                {/* Links */}
                 <div className="flex gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
-                  >
-                    <FaGithub /> Code
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
+                    >
+                      <FaGithub /> Code
+                    </a>
+                  )}
 
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
-                  >
-                    <FaExternalLinkAlt /> Live
-                  </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
+                    >
+                      <FaExternalLinkAlt /> Live
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

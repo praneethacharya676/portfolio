@@ -30,7 +30,7 @@ export default function About() {
           viewport={{ once: true }}
           className="text-xl md:text-2xl font-semibold text-purple-400 mb-6"
         >
-          Frontend / React Developer
+          Frontend / UI/UX Developer / Web Developer
         </motion.h3>
 
         {/* Description */}

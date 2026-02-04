@@ -2,21 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* -------- Global -------- */
+/* ================= GLOBAL ================= */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* -------- Common Section -------- */
+/* Offset for fixed navbar */
+section {
+  scroll-margin-top: 120px;
+}
+
+/* ================= SECTION SYSTEM ================= */
+
 .section {
-  @apply py-24;
+  @apply py-24 bg-gradient-to-br from-bgMain via-bgSoft to-bgMain;
 }
 
 .section-title {
-  @apply text-4xl md:text-5xl font-bold mb-6 text-center text-white;
+  @apply text-4xl md:text-5xl font-bold text-center text-white mb-6;
 }
 
-/* -------- Social Icons (NO custom colors here) -------- */
+.section-accent {
+  @apply text-accent;
+}
+
+.section-text {
+  @apply text-textMain leading-relaxed;
+}
+
+.section-muted {
+  @apply text-textSoft;
+}
+
+/* ================= CARD SYSTEM ================= */
+
+.card {
+  @apply bg-bgMain/80 border border-accent/20 rounded-2xl hover:border-accent transition;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-primary {
+  @apply bg-accent text-black px-8 py-3 rounded-full font-semibold shadow-lg shadow-accent/40 hover:scale-105 transition;
+}
+
+/* ================= SOCIAL ICONS ================= */
+
 .social-icon {
-  @apply w-10 h-10 flex items-center justify-center rounded-full border transition duration-300 shadow-md;
+  @apply w-10 h-10 flex items-center justify-center rounded-full border border-accent/40 text-accent hover:bg-accent hover:text-black transition duration-300 shadow-md;
 }

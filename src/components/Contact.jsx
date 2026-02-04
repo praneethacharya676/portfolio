@@ -81,8 +81,8 @@ export default function Contact() {
 
           <div className="space-y-6">
             <InfoCard title="Email" value="praneethacharya676@gmail.com" />
-            <InfoCard title="Phone" value="+91 9XXXXXXXXX" />
-            <InfoCard title="Location" value="Karnataka, India" />
+            <InfoCard title="Phone" value="+91 9513281676" />
+            <InfoCard title="Location" value="Udupi, Karnataka, India" />
           </div>
         </div>
 

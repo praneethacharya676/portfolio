@@ -1,57 +1,39 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
 
-  // Detect active section
-  useEffect(() => {
-    const sections = document.querySelectorAll("section");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  const linkClass = (id) =>
-    `block py-2 transition ${
-      active === id
-        ? "text-accent drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]"
-        : "text-white hover:text-accent"
-    }`;
+  const links = ["Home", "About", "Skills", "Projects", "Contact"];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/70 backdrop-blur">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl">
+      <div className="flex items-center justify-between px-6 py-4 rounded-2xl
+        bg-gradient-to-r from-[#020617] via-[#081a3a] to-[#020617]
+        border border-cyan-400/20 backdrop-blur-md">
+
         {/* Logo */}
-        <h1 className="text-xl font-bold text-accent">Praneeth</h1>
+        <h1 className="text-xl font-bold text-cyan-400">Praneeth</h1>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8">
-          <a href="#home" className={linkClass("home")}>Home</a>
-          <a href="#about" className={linkClass("about")}>About</a>
-          <a href="#skills" className={linkClass("skills")}>Skills</a>
-          <a href="#projects" className={linkClass("projects")}>Projects</a>
-          <a href="#contact" className={linkClass("contact")}>Contact</a>
+          {links.map(link => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              className="text-white hover:text-cyan-400 transition"
+            >
+              {link}
+            </a>
+          ))}
         </div>
 
-        {/* Hamburger */}
+        {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-accent text-2xl"
+          className="md:hidden text-cyan-400 text-2xl"
           onClick={() => setOpen(!open)}
         >
-          {open ? "✕" : "☰"}
+          ☰
         </button>
       </div>
 
@@ -59,24 +41,23 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-bgMain border-t border-accent/20"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="mt-2 md:hidden rounded-2xl
+              bg-gradient-to-b from-[#020617] to-[#081a3a]
+              border border-cyan-400/20"
           >
-            <div className="px-6 py-4 flex flex-col gap-2">
-              {["home", "about", "skills", "projects", "contact"].map((id) => (
-                <a
-                  key={id}
-                  href={`#${id}`}
-                  onClick={() => setOpen(false)}
-                  className={linkClass(id)}
-                >
-                  {id.charAt(0).toUpperCase() + id.slice(1)}
-                </a>
-              ))}
-            </div>
+            {links.map(link => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                onClick={() => setOpen(false)}
+                className="block px-6 py-4 text-white hover:text-cyan-400"
+              >
+                {link}
+              </a>
+            ))}
           </motion.div>
         )}
       </AnimatePresence>

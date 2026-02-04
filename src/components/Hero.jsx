@@ -5,95 +5,92 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 export default function Hero() {
   const [text] = useTypewriter({
-    words: ["Web Developer", "React Developer", "Frontend Developer"],
+    words: ["UI/UX Developer", "Frontend Developer", "Web Developer"],
     loop: true,
     delaySpeed: 2000,
   });
 
   return (
-    <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-[#050b1a] via-[#07142c] to-[#020617]">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+    <section
+      id="home"
+      className="min-h-screen pt-32 pb-20
+      bg-gradient-to-br from-[#020617] via-[#081a3a] to-[#020617]"
+    >
+      <div className="max-w-7xl mx-auto px-6
+        flex flex-col-reverse md:grid md:grid-cols-2
+        gap-14 items-center">
 
-        {/* LEFT CONTENT */}
+        {/* TEXT */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
+          className="text-center md:text-left"
         >
-          <p className="text-gray-400 mb-2">Hello, It&apos;s Me</p>
+          <p className="text-gray-400 mb-2">Hello, It's Me</p>
 
           <h1 className="text-4xl md:text-5xl font-bold mb-2">
             Praneeth <span className="text-cyan-400">Acharya</span>
           </h1>
 
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-            And I&apos;m a{" "}
-            <span className="text-cyan-400">
+          <h2 className="text-xl md:text-2xl mb-4">
+            And I'm a{" "}
+            <span className="text-cyan-400 font-semibold">
               {text}
-              <Cursor cursorStyle="|" />
             </span>
+            <Cursor />
           </h2>
 
-          <p className="text-gray-400 max-w-md mb-6">
-            I’m an MCA graduate and frontend developer with strong knowledge of
-            React, Tailwind CSS, and responsive UI design.
+          <p className="text-gray-300 max-w-md mx-auto md:mx-0 mb-6">
+            I'm an MCA graduate and frontend developer with strong
+            knowledge of React, Tailwind CSS, and responsive UI design.
           </p>
 
-          {/* SOCIAL ICONS */}
-          <div className="flex gap-4 mb-6">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="social-icon">
-              <FaFacebookF />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-icon">
-              <FaInstagram />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-icon">
-              <FaLinkedinIn />
-            </a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="social-icon">
-              <FaGithub />
-            </a>
+          {/* Social Icons */}
+          <div className="flex justify-center md:justify-start gap-4 mb-6">
+            {[FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub].map(
+              (Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="social-icon"
+                >
+                  <Icon />
+                </a>
+              )
+            )}
           </div>
 
-         <div className="flex flex-wrap gap-4">
-        <a href="/resume.pdf"
+          <a
+            href="/resume.pdf"
             download
-            className="inline-block bg-cyan-400 text-black px-6 py-3 rounded-full font-semibold shadow-lg shadow-cyan-400/40 hover:scale-105 transition">
+            className="inline-block bg-cyan-400 text-black px-8 py-3
+            rounded-full font-semibold shadow-lg shadow-cyan-400/40
+            hover:scale-105 transition"
+          >
             Download Resume
-        </a>
-        </div>
-
+          </a>
         </motion.div>
 
-        {/* RIGHT IMAGE */}
-       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{
-            opacity: 1,
-            scale: 1,
-            y: [0, -15, 0],   // floating up & down
-        }}
-        transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-        }}
-        className="flex justify-center"
+        {/* IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="flex justify-center"
         >
-
           <div className="relative">
-            {/* Glow */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-400 via-purple-500 to-pink-500 blur-2xl opacity-70"></div>
-
-            {/* Image */}
+            <div className="absolute inset-0 rounded-full
+              bg-gradient-to-tr from-cyan-400 via-purple-500 to-pink-500
+              blur-2xl opacity-70" />
             <img
               src={profile}
-              alt="Profile"
-              className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-cyan-400"
+              alt="profile"
+              className="relative w-64 h-64 md:w-80 md:h-80
+              rounded-full object-cover border-4 border-cyan-400"
             />
           </div>
         </motion.div>
-
       </div>
     </section>
   );
